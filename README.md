@@ -39,7 +39,7 @@ python pacman.py
 ~~~~
 
 <p align="center">
-<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/interactive.gif" width="540" />
+<img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/interactive.gif" width="540" />
 </p>
 
 To see how Pac-Man fares using search algorithms, we can define some variables:
