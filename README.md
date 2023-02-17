@@ -1,28 +1,34 @@
 # Pac-Man | Python 3
 
-NOTE: This is a translation of the original repository, written in Python 2, to Python 3. Mainly done automatically via the [`2to3`](https://docs.python.org/3/library/2to3.html) library, with a few manual changes here and there.
+NOTE: This is a translation of the [original repository](https://github.com/thiadeliria/Pacman), written in Python 2, to Python 3. Mainly done automatically via the [`2to3`](https://docs.python.org/3/library/2to3.html) library, with a few manual changes here and there. All the commands below should be functional.
 
 A Python implementation of artificial intelligence search algorithms to solve problems within the Berkeley Pac-Man environment. The [Pac-Man Projects, developed at UC Berkeley](http://ai.berkeley.edu), apply AI concepts to the classic arcade game. I help Pac-Man find food, avoid ghosts, and maximise his game score using uninformed and informed state-space search, probabilistic inference, and reinforcement learning.
 
-This project uses Python 3.x plus NumPy 1.13.1 and SciPy 0.19.1.
+## Environment setup
+
+The project requires Python 3.x, NumPy, and SciPy. The following are the minimal setup steps using the [`conda`](https://docs.conda.io/en/latest/miniconda.html) package manager:
+* Create a new `pacman` environment with Python 3.10, numpy, and SciPy: `conda create -n pacman python=3.10 numpy scipy`
+* Activate the new environment: `conda activate pacman`
+* Navigate to the directory with the cloned repository
+* Run the full game: `python pacman.py`
 
 
 ## Table of Contents
-* [How to Play](https://github.com/thiadeliria/Pacman#how-to-play)
-* [Uninformed Search](https://github.com/thiadeliria/Pacman#uninformed-search)
-    * [Problem: Finding Some Food in a Small Search Space](https://github.com/thiadeliria/Pacman#problem-finding-some-food-in-a-small-search-space)
-        * [Depth-First Search](https://github.com/thiadeliria/Pacman#depth-first-search-dfs)
-        * [Breadth-First Search](https://github.com/thiadeliria/Pacman#breadth-first-search-bfs)
-        * [Comparison](https://github.com/thiadeliria/Pacman#comparison)
-    * [Problem: Finding Some Food in a Large Search Space](https://github.com/thiadeliria/Pacman#problem-finding-some-food-in-a-large-search-space)
-        * [Depth-First Search](https://github.com/thiadeliria/Pacman#depth-first-search-dfs-1)
-        * [Breadth-First Search](https://github.com/thiadeliria/Pacman#breadth-first-search-bfs-1)
-        * [Comparison](https://github.com/thiadeliria/Pacman#comparison-1)
-* [Informed Search](https://github.com/thiadeliria/Pacman#informed-search)
-    * [Problem: Finding All the Food](https://github.com/thiadeliria/Pacman#problem-finding-all-the-food)
-        * [Depth-First Search](https://github.com/thiadeliria/Pacman#depth-first-search-dfs-2)
-        * [Breadth-First Search](https://github.com/thiadeliria/Pacman#breadth-first-search-bfs-2)
-        * [A* Search](https://github.com/thiadeliria/Pacman#a-search)
+* [How to Play](https://github.com/iusethemouse/pac-man-python3#how-to-play)
+* [Uninformed Search](https://github.com/iusethemouse/pac-man-python3#uninformed-search)
+    * [Problem: Finding Some Food in a Small Search Space](https://github.com/iusethemouse/pac-man-python3#problem-finding-some-food-in-a-small-search-space)
+        * [Depth-First Search](https://github.com/iusethemouse/pac-man-python3#depth-first-search-dfs)
+        * [Breadth-First Search](https://github.com/iusethemouse/pac-man-python3#breadth-first-search-bfs)
+        * [Comparison](https://github.com/iusethemouse/pac-man-python3#comparison)
+    * [Problem: Finding Some Food in a Large Search Space](https://github.com/iusethemouse/pac-man-python3#problem-finding-some-food-in-a-large-search-space)
+        * [Depth-First Search](https://github.com/iusethemouse/pac-man-python3#depth-first-search-dfs-1)
+        * [Breadth-First Search](https://github.com/iusethemouse/pac-man-python3#breadth-first-search-bfs-1)
+        * [Comparison](https://github.com/iusethemouse/pac-man-python3#comparison-1)
+* [Informed Search](https://github.com/iusethemouse/pac-man-python3#informed-search)
+    * [Problem: Finding All the Food](https://github.com/iusethemouse/pac-man-python3#problem-finding-all-the-food)
+        * [Depth-First Search](https://github.com/iusethemouse/pac-man-python3#depth-first-search-dfs-2)
+        * [Breadth-First Search](https://github.com/iusethemouse/pac-man-python3#breadth-first-search-bfs-2)
+        * [A* Search](https://github.com/iusethemouse/pac-man-python3#a-search)
         
 
 ## How to Play
@@ -33,7 +39,7 @@ python pacman.py
 ~~~~
 
 <p align="center">
-<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/interactive.gif" width="540" />
+<img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/interactive.gif" width="540" />
 </p>
 
 To see how Pac-Man fares using search algorithms, we can define some variables:
@@ -57,7 +63,7 @@ the search algorithm returns a sequence of states that leads Pac-Man from initia
 We can compare some algorithms by observing how Pac-Man fares on a tinyMaze `MAZE_TYPE` with a fixed food dot.
 
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tinymaze.png" width="200" title="tinyMaze"/>
+ <img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/tinymaze.png" width="200" title="tinyMaze"/>
 </p>
 
 Pac-Man's initial state is in the upper right corner of the maze. His goal state is a cell containing food, which in this case is the cell in the lower left corner.
@@ -69,14 +75,14 @@ python pacman.py -l tinyMaze -p SearchAgent -a fn=dfs
 ~~~~
 
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tiny_dfs.gif" width="200" title="DFS on tinyMaze"/>
+ <img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/tiny_dfs.gif" width="200" title="DFS on tinyMaze"/>
 </p>
 
 **Cost:** Pac-Man finds the food in 10 steps.
 
 **Search nodes expanded:** DFS expands 15 cells in the process of finding a solution.
 
-<img align="left" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tiny_dfs_paths.png" width="200" title="DFS paths on tinyMaze"/>
+<img align="left" src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/tiny_dfs_paths.png" width="200" title="DFS paths on tinyMaze"/>
 
 **Strategy:** DFS uses a LIFO (last-in, first-out) stack to construct the frontier. DFS adds a successor to the frontier and immediately expands it; in other words, it builds a path by exploring a neighbouring cell, then exploring the cell next to that, then the cell next to that, and so on. For instance, it determines Pac-Man can go either west or south from the initial state, but chooses to explore the path heading west to the end before considering the path heading south.
 
@@ -88,14 +94,14 @@ python pacman.py -l tinyMaze -p SearchAgent -a fn=bfs
 ~~~~
 
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tiny_bfs.gif" width="200" title="BFS on tinyMaze"/>
+ <img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/tiny_bfs.gif" width="200" title="BFS on tinyMaze"/>
 </p>
 
 **Cost:** Pac-Man finds a more efficient path in 8 steps.
 
 **Search nodes expanded:** 15.
 
-<img align="left" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tiny_bfs_paths.gif" width="200" title="BFS paths on tinyMaze"/>
+<img align="left" src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/tiny_bfs_paths.gif" width="200" title="BFS paths on tinyMaze"/>
 
 **Strategy:** BFS's frontier is a FIFO (first-in, first-out) queue and expands successors in the order they were added. 
 
@@ -109,7 +115,7 @@ On a tinyMaze, BFS has an advantage. The order in which it builds the frontier e
 Let's compare the two algorithms on a `MAZE_TYPE` with a greater search space. The mediumMaze has in total 269 cells (nodes), compared to tinyMaze's 15. In addition to cost, we consider the number of nodes expanded by the algorithm while searching for a solution.
 
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/mediummaze.png" title="mediumMaze"/>
+ <img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/mediummaze.png" title="mediumMaze"/>
 </p>
 
 Pac-Man's initial state is the cell in the upper right corner. His goal state is a cell containing food, which is the cell in the lower left corner.
@@ -119,9 +125,9 @@ Pac-Man's initial state is the cell in the upper right corner. His goal state is
 python pacman.py -l mediumMaze -p SearchAgent -a fn=dfs
 ~~~~
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/medium_dfs.gif" title="DFS on mediumMaze"/>
+ <img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/medium_dfs.gif" title="DFS on mediumMaze"/>
 </p>
-<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/medium_dfs_text.png" title="DFS on mediumMaze, text"/>
+<img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/medium_dfs_text.png" title="DFS on mediumMaze, text"/>
 
 **Cost:** Pac-Man finds the food in 130 steps.
 
@@ -133,9 +139,9 @@ python pacman.py -l mediumMaze -p SearchAgent -a fn=bfs
 ~~~~
 
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/medium_bfs.gif" title="BFS on mediumMaze"/>
+ <img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/medium_bfs.gif" title="BFS on mediumMaze"/>
 </p>
-<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/medium_bfs_text.png" title="BFS on mediumMaze, text"/>
+<img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/medium_bfs_text.png" title="BFS on mediumMaze, text"/>
 
 **Cost:** Pac-Man finds the food in 68 steps.
 
@@ -153,7 +159,7 @@ Previously, we used algorithms that found a solution given the initial state, th
 ### Problem: Finding All the Food
 Now Pac-Man has a more complicated task. We use a trickySearch maze, in which there are a number of food dots for him to locate. He begins in the centre of the map and must eat all of the food.
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/trickySearch.png" title="trickySearch maze"/>
+ <img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/trickySearch.png" title="trickySearch maze"/>
 </p>
 
 #### Depth-First Search (DFS)
@@ -162,10 +168,10 @@ python pacman.py -l trickySearch -p SearchAgent -a fn=dfs,prob=FoodSearchProblem
 ~~~~
 
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_dfs.gif" title="DFS on trickySearch"/>
+ <img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/tricky_dfs.gif" title="DFS on trickySearch"/>
 </p>
 
-<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_dfs_text.png" title="DFS on trickySearch, text"/>
+<img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/tricky_dfs_text.png" title="DFS on trickySearch, text"/>
 
 Pac-Man dawdles uncertainly and retraces his steps in the maze. Let's try a different algorithm.
 
@@ -175,10 +181,10 @@ python pacman.py -l trickySearch -p SearchAgent -a fn=bfs,prob=FoodSearchProblem
 ~~~~
 
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_bfs.gif" title="BFS on trickySearch"/>
+ <img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/tricky_bfs.gif" title="BFS on trickySearch"/>
 </p>
 
-<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_bfs_text.png" title="BFS on trickySearch, text"/>
+<img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/tricky_bfs_text.png" title="BFS on trickySearch, text"/>
 
 Pac-Man manages to find a short and stright-forward solution. However, it takes almost a whole minute for BFS to find this solution - BFS expands over 16,000 nodes during the search process. (For reference, there are 67 nodes in this maze.)
 
@@ -192,10 +198,10 @@ python pacman.py -l trickySearch -p SearchAgent -a fn=astar,prob=FoodSearchProbl
 ~~~~
 
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_astar.gif" title="A* on trickySearch"/>
+ <img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/tricky_astar.gif" title="A* on trickySearch"/>
 </p>
 
-<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_astar_text.png" title="A* on trickySearch, text"/>
+<img src="https://github.com/iusethemouse/pac-man-python3/blob/master/gifs/tricky_astar_text.png" title="A* on trickySearch, text"/>
 
 Pac-Man now quickly and confidently gobbles up all the food in the maze. A* expands only 2,748 nodes compared to BFS' 16,688, and still manages to find a decently short solution.
 
